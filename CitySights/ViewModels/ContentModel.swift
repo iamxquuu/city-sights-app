@@ -13,6 +13,9 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     var locationManager = CLLocationManager()
     
+    @Published var restaurants = [Business]()
+    @Published var sights = [Business]()
+    
     override init() {
         
         super.init()
@@ -48,14 +51,14 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
             //Stop requesting the location after we get it once
             locationManager.stopUpdatingLocation()
             
-            //getBusinesses(category: "arts", location: userLocation!)
-            getBusinesses(category: "restaurants", location: userLocation!)
+            getBusinesses(category: Constants.sightsKey, location: userLocation!)
+            getBusinesses(category: Constants.restaurantsKey, location: userLocation!)
         }
     }
     // MARK: - Yelp API methods
     func getBusinesses(category:String, location:CLLocation) {
 
-        var urlComponents = URLComponents(string: "https://api.yelp.com/v3/businesses/search")
+        var urlComponents = URLComponents(string: Constants.apiUrl)
         urlComponents?.queryItems = [
             URLQueryItem(name: "latitude", value: String(location.coordinate.latitude)),
             URLQueryItem(name: "longitude", value: String(location.coordinate.longitude)),
@@ -68,20 +71,36 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
         if let url = url {
             var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
             request.httpMethod = "GET"
-            request.addValue("Bearer yR9id465JCQwWPNj0JdaP3DfQX0AwBMVcJxXKdXDnIZ_5_G2RtFOc1pUCTdpZw7OJDYEDzDkwgtptWgGPbnxECXGaLde02Uv_c1-QxEJU5sdGTppxnGXL6s2ZohrZHYx", forHTTPHeaderField: "Authorization")
+            request.addValue("Bearer \(Constants.apiKey)", forHTTPHeaderField: "Authorization")
            
             let session = URLSession.shared
             let dataTask = session.dataTask(with: request) { (data, response, error) in
                 if error == nil {
-                    print(response)
+                    do {
+                        
+                        //Parse JSON
+                        let decoder = JSONDecoder()
+                        let result = try decoder.decode(BusinessSearch.self, from: data!)
+                        
+                        DispatchQueue.main.async {
+                            
+                            switch category {
+                            case Constants.sightsKey:
+                                self.sights = result.businesses
+                            case Constants.restaurantsKey:
+                                self.restaurants = result.businesses
+                            default:
+                                break
+                            }
+                        }
+                    }
+                    catch{
+                        print(error)
+                    }
                 }
                 
             }
             dataTask.resume()
-            
         }
-        
-        
-        
     }
 }
