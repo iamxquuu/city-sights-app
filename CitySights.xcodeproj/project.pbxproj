@@ -19,6 +19,7 @@
 		0E1F8B9D2A1D4EAA006EE630 /* BusinessList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1F8B9C2A1D4EAA006EE630 /* BusinessList.swift */; };
 		0E1F8B9F2A1D50E0006EE630 /* BusinessSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1F8B9E2A1D50E0006EE630 /* BusinessSectionHeader.swift */; };
 		0E1F8BA12A1D518A006EE630 /* BusinessSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1F8BA02A1D518A006EE630 /* BusinessSection.swift */; };
+		0E904F1D2A1E0A2A00DF296F /* BusinessRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E904F1C2A1E0A2A00DF296F /* BusinessRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		0E1F8B9C2A1D4EAA006EE630 /* BusinessList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessList.swift; sourceTree = "<group>"; };
 		0E1F8B9E2A1D50E0006EE630 /* BusinessSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSectionHeader.swift; sourceTree = "<group>"; };
 		0E1F8BA02A1D518A006EE630 /* BusinessSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSection.swift; sourceTree = "<group>"; };
+		0E904F1C2A1E0A2A00DF296F /* BusinessRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				0E1F8B9C2A1D4EAA006EE630 /* BusinessList.swift */,
 				0E1F8B9E2A1D50E0006EE630 /* BusinessSectionHeader.swift */,
 				0E1F8BA02A1D518A006EE630 /* BusinessSection.swift */,
+				0E904F1C2A1E0A2A00DF296F /* BusinessRow.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E115A722A1BAB6C00CB3E4B /* LaunchView.swift in Sources */,
+				0E904F1D2A1E0A2A00DF296F /* BusinessRow.swift in Sources */,
 				0E1F8B9A2A1D4B44006EE630 /* HomeView.swift in Sources */,
 				0E1F8B902A1D4314006EE630 /* Business.swift in Sources */,
 				0E1F8B9F2A1D50E0006EE630 /* BusinessSectionHeader.swift in Sources */,
